@@ -1,4 +1,10 @@
 import tensorflow as tf
+import argparse
+
+parser = argparse.ArgumentParser(description="Podaj sciezke do pliku!")
+parser.add_argument("plik", help="sciezka do pliku")
+args = parser.parse_args()
+
 
 model = tf.keras.models.load_model("model.keras")
 
@@ -8,5 +14,6 @@ x_train, x_test = x_train / 255.0, x_test / 255.0
 # model = tf.keras.models.Sequential([tf.keras.layers.Flatten(input_shape=(28, 28)),   tf.keras.layers.Dense(128, activation='relu'),   tf.keras.layers.Dropout(0.2),   tf.keras.layers.Dense(10, activation='softmax') ])
 # model.compile(optimizer='adam',               loss='sparse_categorical_crossentropy',               metrics=['accuracy'])
 # model.fit(x_train, y_train, epochs=5) # użyj verbose=0 jeśli jest problem z konsolą
-model.evaluate(x_test, y_test)
+# model.evaluate(x_test, y_test)
 # model.save("model.keras")
+print(f"plik wejsciowy: {args.plik}")
