@@ -1,5 +1,7 @@
 .venv
 .idea
+*.png
 
 dataset/
+models/
 wine.data
