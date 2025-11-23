@@ -1,0 +1,9 @@
+.venv
+.idea
+*.png
+
+dataset/
+models/
+results/
+kt_dir/
+wine.data
