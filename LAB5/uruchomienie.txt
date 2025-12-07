@@ -1,0 +1,13 @@
+Uruchomienie treningu:
+	python train_fashion_mnist.py --arch dense --epochs 10 --augment --output-dir models_dense
+	python train_fashion_mnist.py --arch cnn --epochs 10 --augment --output-dir models_cnn
+
+Uruchomienie klasyfikacji:
+	python predict_fashion_mnist.py models_dense/fashion_mnist_dense.keras tshirt.png
+	python predict_fashion_mnist.py models_cnn/fashion_mnist_cnn.keras tshirt.png
+	
+	python predict_fashion_mnist.py models_dense/fashion_mnist_dense.keras trouser.png
+	python predict_fashion_mnist.py models_cnn/fashion_mnist_cnn.keras trouser.png
+	
+	python predict_fashion_mnist.py models_dense/fashion_mnist_dense.keras pullover.png
+	python predict_fashion_mnist.py models_cnn/fashion_mnist_cnn.keras pullover.png

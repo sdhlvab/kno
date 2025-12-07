@@ -1,0 +1,7 @@
+.venv
+.idea
+
+models_dense/
+models_cnn/
+models_dense_no_aug/
+models_cnn_no_aug/
