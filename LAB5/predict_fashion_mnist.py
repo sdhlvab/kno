@@ -25,33 +25,34 @@ CLASS_NAMES = [
 
 def load_and_preprocess_image(image_path: Path) -> np.ndarray:
     """
-    Wczytuje obrazek, konwertuje do skali szarości, skaluje do 28x28,
-    normalizuje do [0,1] i robi negatyw.
-    Zwraca tablicę o kształcie (1, 28, 28, 1).
+    Wczytuje obrazek, konwertuje do skali szarości, skaluje do 28x28
+    i (opcjonalnie) robi negatyw w taki sposób, żeby pasowało do treningu.
+
+    Zwraca tablicę o kształcie (1, 28, 28, 1) w skali 0–255,
+    bo w modelu jest jeszcze warstwa Rescaling(1/255).
     """
     if not image_path.is_file():
         raise FileNotFoundError(f"Nie znaleziono pliku: {image_path}")
 
-    #wczytanie
+    #wczytanie, grayscale, zmiana rozdzielczości
     img = Image.open(image_path)
-
-    #grayscale
-    img = img.convert("L")  # 8-bit grayscale
-
-    #skalowanie do 28x28 (jak w fashion_mnist)
-    img = img.resize((28, 28))
+    img = img.convert("L")          # 8-bit grayscale
+    img = img.resize((28, 28))      # jak w fashion_mnist
 
     #do tablicy numpy
-    img_array = np.array(img).astype("float32") / 255.0
+    img_array = np.array(img).astype("float32")  # zakres 0–255
 
-    #negatyw: dataset ma białe na czarnym, więc odwracmy
-    img_array = 1.0 - img_array
+    #negatyw w skali 0–255 (tylko jeśli jasne tło)
+    mean_val = img_array.mean()
+    if mean_val > 128:
+        img_array = 255.0 - img_array
 
-    #dodaj wymiar kanału i batcha: (1, 28, 28, 1)
+    #dodanie wymiarów: (28,28) -> (28,28,1) -> (1,28,28,1)
     img_array = np.expand_dims(img_array, axis=-1)
     img_array = np.expand_dims(img_array, axis=0)
 
     return img_array
+
 
 
 def parse_args():

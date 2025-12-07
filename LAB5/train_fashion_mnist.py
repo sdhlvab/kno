@@ -10,6 +10,7 @@ import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
 
+from PIL import Image
 
 #etykiety klas z fashion_mnist, kolejność wg dokumnetacji
 CLASS_NAMES = [
