@@ -1,0 +1,7 @@
+.venv
+.idea
+
+models_dense/
+models_cnn/
+results/
+kt_dir/
