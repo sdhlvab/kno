@@ -1,0 +1,6 @@
+.venv
+.idea
+
+#data/
+out/
+out_img/
