@@ -1,0 +1,16 @@
+uruchomienie:
+python btc_train.py `
+  --file_path dataset/btc_1d_data_2018_to_2025.csv `
+  --date_col "Open time" --value_col Close `
+  --out_dir runs/btc `
+  --window 180 --epochs 25 --batch_size 64 `
+  --harm_k 2 --use_rolling --rolling_window 30 `
+  --tune --kt_max_trials 10 --kt_epochs 6
+
+python btc.py `
+  --file_path dataset/btc_1d_data_2018_to_2025.csv `
+  --date_col "Open time" --value_col Close `
+  --out_dir runs/btc `
+  --n 10 --result out.csv `
+  --window 90 --harm_k 2 --use_rolling --rolling_window 20 `
+  --model rnn

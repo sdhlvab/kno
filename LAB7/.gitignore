@@ -1,0 +1,6 @@
+.venv
+.idea
+
+testy/
+runs/
+#dataset/
